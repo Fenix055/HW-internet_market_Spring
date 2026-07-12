@@ -1,4 +1,4 @@
-package org.skypro.skyshop.model.service;
+package org.skypro.skyshop.service;
 
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.article.Article;
@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.Collection;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.SimpleProduct;
@@ -45,6 +46,10 @@ public class StorageService {
                 productMap.values().stream(),
                 articleMap.values().stream()
         ).collect(Collectors.toList());
+    }
+
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(productMap.get(id));
     }
 
     @PostConstruct
